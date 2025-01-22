@@ -25,6 +25,19 @@
             font-size: 2.5em;
         }
 
+        .nav {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+            background-color: #d1c4e9;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+        }
+
         main {
             display: flex;
             flex-direction: column;
@@ -47,6 +60,13 @@
             overflow: hidden;
             text-align: center;
             padding: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .bunny-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
         }
 
         .bunny-card img {
@@ -57,6 +77,20 @@
         .bunny-card p {
             margin-top: 10px;
             font-size: 1em;
+            display: none; /* Initially hide the fact */
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: scale(0.95);
+            opacity: 0;
+        }
+
+        .bunny-card.active p {
+            display: block;
+            transform: scale(1);
+            opacity: 1;
         }
 
         footer {
@@ -66,12 +100,25 @@
             color: white;
             margin-top: 20px;
         }
+
+        .github-icon {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>All About Bunnies</h1>
     </header>
+    
+    <div class="nav">
+        <a href="https://github.com/magdziorhej" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" class="github-icon"> Visit the Author!
+        </a>
+    </div>
     
     <main>
         <section class="bunny-container">
@@ -104,7 +151,7 @@
                 <p>Bunnies communicate using body language, such as thumping their hind legs to warn of danger.</p>
             </div>
             <div class="bunny-card">
-                <img src="https://images.stockcake.com/public/f/8/4/f84a3749-6179-434f-9184-b6195ebd502b_large/jumping-white-rabbit-stockcake.jpg" alt="cool bunny">
+                <img src="https://images.stockcake.com/public/f/8/4/f84a3749-6179-434f-9184-b6195ebd502b_large/jumping-white-rabbit-stockcake.jpg" alt="Cool bunny">
                 <p>Bunnies groom themselves often, keeping their fur clean and soft.</p>
             </div>
         </section>
@@ -113,5 +160,14 @@
     <footer>
         <p>&copy; 2025 Bunny Enthusiasts</p>
     </footer>
+
+    <script>
+        document.querySelectorAll('.bunny-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const fact = card.querySelector('p');
+                card.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>
